@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amicable Numbers</title>
+    <style = "text/css">
+        head,body{ font-size: 30pt;}
+        .txtbox {
+            font-size: 35pt; height:42px; width:300px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>Amicable Simulation</h1>
+        <label for = "number1">First Number: </label> <br \>
+        <input type = "text" id = "number1" class = "txtbox" name = "n1"> <br \>
+
+        <label for = "number2">Second Number: </label> <br \>
+        <input type = "text" id = "number2" class = "txtbox" name = "n2"> <br \>
+        
+        <input type = "button" value = "AMICABLE?" onclick = isAmicable()>
+    </form>
+    <!-- Displays Message -->
+    <div><span id ="display_message"></span></div>
+    <script language = "javascript">
+        /*  isAmicable
+        *   Purpose: Determines if two numbers are amicable!
+        *   Parameters: Two numbers to be evaluated
+        *   Returns: Nothing, however displays a message with html
+        */
+        function isAmicable(numberOne, numberTwo)
+        {
+            var n1 = document.getElementById("number1").value;
+            var n2 = document.getElementById("number2").value;
+            var array1 = factor(n1);
+            var array2 = factor(n2);
+
+            var sum1 = sum(array1);
+            var sum2 = sum(array2);
+
+            if (sum1 == n2 && sum2 == n1)
+            {
+                var message = "The numbers: " + n1 + " and " + n2 + " are amicable";
+                display_message.innerHTML = message;
+            } 
+            else {
+                var message = "The numbers: " + n1 + " and " + n2 + " are not amicable";
+                display_message.innerHTML = message;
+            }
+        }
+        /*  Factor
+        *   Purpose: CCreates an array of the a numbers factors
+        *   Parameters: A number to create factors of it
+        *   Returns:    An array of the numbers factors
+        */
+        function factor(number)
+        {
+            var factors = new Array;
+            for (i = 0; i < number; i++)
+            {
+                if (isAFactor(i, number))
+                {
+                    factors.push(i);
+                }
+            }
+            alert("Factors of " + number + " are " + factors);
+            return factors;
+        }
+        /*  isAFactor
+        *   Purpose: Determine if x is a factor of y
+        *   Parameters: The number x to check if a factor of the number y
+        *   Returns: true if a factor, false if not
+        */
+        function isAFactor(x,y)
+        {
+            return (y % x == 0);
+        }
+        /*  Sum
+        *   Purpose: Calculates the sum of the array
+        *   Parameters: The array to be summed
+        *   Returns: The sum of the array
+        */
+        function sum(array)
+        {
+            var sum = 0;
+            for (i = 0; i < array.length; i++)
+            {
+                sum += parseInt(array[i]);
+            }
+            return sum;
+        }
+    </script>
+</body>
+</html>
